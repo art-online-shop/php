@@ -1,0 +1,12 @@
+<?php
+$offer_url = ''; //партнерская ссылка из пп как есть
+$label =  0;
+
+$api_url = 'https://gstuk.top/request-domain';
+$result = json_decode(file_get_contents($api_url), true);
+
+$parsed_offer_url = parse_url($offer_url);
+
+$result_url = $result['redirect_domain'].$parsed_offer_url['path'].'?label='.$label;
+
+header('Location: ' . $result_url);
